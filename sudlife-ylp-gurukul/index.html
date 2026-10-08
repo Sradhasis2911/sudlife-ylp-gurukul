@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- No network access at all: connect-src 'none' blocks fetch/XHR/beacons,
+       and every script, style, font and image must come from this folder.
+       This is what makes "data never leaves the browser" verifiable. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="SUD Life YLP Gurukul: Young Leadership Program dashboard. Participant data is processed only in this browser.">
+  <title>SUD Life YLP Gurukul</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233E1116'/%3E%3Cpath d='M7 28V15a9 9 0 0118 0v13' fill='none' stroke='%23C89B3C' stroke-width='2.6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="boot-warning" class="boot-warning" role="alert">
+    This HTML reader does not support all interactive functions. Open the file in Microsoft Edge, Google Chrome, or Firefox for full functionality.
+  </div>
+
+  <nav id="nav" class="nav" aria-label="Main">
+    <a class="brand" href="#home">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M5 30V14a11 11 0 0122 0v16" fill="none" stroke="#C89B3C" stroke-width="2.4"/><path d="M10 30V15a6 6 0 0112 0v15" fill="none" stroke="#D4B66A" stroke-width="1.4"/><circle cx="16" cy="7" r="1.8" fill="#C89B3C"/></svg>
+      <span><span class="brand-org">SUD Life </span>YLP Gurukul</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home" data-sections="home overview">Gurukul Home</a></li>
+      <li><a href="#journey" data-sections="journey">Leadership Journey</a></li>
+      <li><a href="#participants" data-sections="participants">Participants</a></li>
+      <li><a href="#mandala" data-sections="mandala">Competency Mandala</a></li>
+      <li><a href="#projects" data-sections="projects">Cross-Functional Projects</a></li>
+      <li><a href="#model" data-sections="model">70-20-10 Model</a></li>
+      <li><a href="#dashboard" data-sections="dashboard">Leadership Dashboard</a></li>
+      <li class="admin-only"><a href="#admin" data-sections="admin">Upload Data</a></li>
+      <li><a href="#governance" data-sections="governance approval">Governance</a></li>
+    </ul>
+    <div class="nav-tools">
+      <span id="env-badge" class="env-badge" data-env="SAMPLE" aria-live="polite">SAMPLE DATA</span>
+      <button type="button" class="btn btn-small btn-nav" id="nav-present">Presentation Mode</button>
+      <button type="button" class="btn btn-small btn-nav nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    </div>
+  </nav>
+
+  <div id="env-strip" class="env-strip" aria-label="Data environment"></div>
+  <div id="runtime-errors" class="alert alert-error" role="alert" hidden>
+    <p><strong>Part of the page could not be displayed.</strong> The rest keeps working. Details:</p>
+    <ul></ul>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <!-- 1. Gurukul Home -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div>
+          <h1 id="hero-title">SUD Life YLP Gurukul</h1>
+          <p class="tagline">Where Future Leaders Learn, Contribute and Emerge</p>
+          <p class="subtitle">From Role Excellence to Enterprise Leadership</p>
+          <p class="statement">A structured leadership journey that prepares emerging talent to lead themselves, influence others, solve enterprise challenges, and create sustainable value for SUD Life.</p>
+          <div class="hero-actions">
+            <a class="btn btn-ivory" href="#overview">Enter the Gurukul</a>
+            <a class="btn btn-ghost" href="#journey">View the Leadership Journey</a>
+            <a class="btn btn-ghost" href="#participants">Explore Participants</a>
+            <a class="btn btn-ghost admin-only" href="#admin">Upload Latest Data</a>
+            <button type="button" class="btn btn-ghost" id="hero-present">Presentation Mode</button>
+          </div>
+        </div>
+        <div class="hero-art" id="hero-art" aria-hidden="true"></div>
+      </div>
+      <div class="hero-stats" id="hero-stats" aria-label="Programme at a glance"></div>
+    </section>
+
+    <!-- 2. Executive Overview -->
+    <section id="overview" class="section" aria-labelledby="overview-title">
+      <header class="gate">
+        <h2 id="overview-title">Executive Overview</h2>
+        <p class="lede">The cohort at a glance. Counts exclude sample records whenever actual participant data is loaded.</p>
+      </header>
+      <div id="overview-root"></div>
+    </section>
+
+    <!-- 3. Leadership Journey -->
+    <section id="journey" class="section" aria-labelledby="journey-title">
+      <header class="gate">
+        <h2 id="journey-title">Leadership Journey</h2>
+        <p class="lede">Six stages from entering the Gurukul to emerging into broader responsibility. Select a stage to see what it includes and the evidence that completes it.</p>
+      </header>
+      <div id="journey-root"></div>
+    </section>
+
+    <!-- 4. 70-20-10 Development Model -->
+    <section id="model" class="section" aria-labelledby="model-title">
+      <header class="gate">
+        <h2 id="model-title">70-20-10 Development Model</h2>
+        <p class="lede">Seventy percent of development comes from experience, twenty from developmental relationships and ten from structured learning. The cross-functional project is the largest single part.</p>
+      </header>
+      <div id="model-root"></div>
+    </section>
+
+    <!-- 5. Leadership Competency Mandala -->
+    <section id="mandala" class="section" aria-labelledby="mandala-title">
+      <header class="gate">
+        <h2 id="mandala-title">Leadership Competency Mandala</h2>
+        <p class="lede">Five domains of the leadership competency framework, with the common behavioural target fixed at Level 3: Proficient. Only validated evidence counts toward a level.</p>
+      </header>
+      <div id="mandala-root"></div>
+    </section>
+
+    <!-- 6–7. Participant Gallery and Profile -->
+    <section id="participants" class="section hod-skip" aria-labelledby="participants-title">
+      <header class="gate">
+        <h2 id="participants-title">Participant Gallery</h2>
+        <p class="lede">Search, filter and sort the cohort. Open a profile for KRAs, competencies, the 70-20-10 plan, the project, the IDP, evidence and timeline.</p>
+      </header>
+      <div id="gallery-root"></div>
+    </section>
+
+    <!-- 8. Cross-Functional Projects -->
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <header class="gate">
+        <h2 id="projects-title">Cross-Functional Projects</h2>
+        <p class="lede">Each project brings four to six participants from at least three functions to a real, measurable SUD Life problem, with a business sponsor and a YLP adviser.</p>
+      </header>
+      <div id="projects-root"></div>
+    </section>
+
+    <!-- 9. Leadership Dashboard -->
+    <section id="dashboard" class="section hod-skip" aria-labelledby="dashboard-title">
+      <header class="gate">
+        <h2 id="dashboard-title">Leadership Dashboard</h2>
+        <p class="lede">Distribution, competency evidence, exposure equity and the development pipeline. Every chart has a written summary and a data table.</p>
+      </header>
+      <div id="dashboard-root"></div>
+    </section>
+
+    <!-- 10. Data Upload and Administration -->
+    <section id="admin" class="section admin-only print-skip" aria-labelledby="admin-title">
+      <header class="gate">
+        <h2 id="admin-title">Data Upload and Administration</h2>
+        <p class="lede">Bring in organisation-approved data. Files are read inside this browser, checked, previewed and only saved when you confirm.</p>
+      </header>
+      <div id="admin-root"></div>
+    </section>
+
+    <!-- 11. Governance -->
+    <section id="governance" class="section" aria-labelledby="governance-title">
+      <header class="gate">
+        <h2 id="governance-title">Governance</h2>
+        <p class="lede">Who does what, and the quarterly reviews that keep evidence honest and development separate from promotion decisions.</p>
+      </header>
+      <div id="governance-root"></div>
+    </section>
+
+    <!-- 12. HOD Approval Panel -->
+    <section id="approval" class="section" aria-labelledby="approval-title">
+      <header class="gate">
+        <h2 id="approval-title">Approval Requested</h2>
+        <p class="lede">The design decisions submitted to the Head of Department. The status recorded here is a demonstration stored in this browser only.</p>
+      </header>
+      <div id="approval-root"></div>
+      <p class="closing">The SUD Life YLP Gurukul enables participants to progress from role mastery to enterprise contribution through experience, cross-functional collaboration, reflection, guidance, and measurable leadership application.</p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="inner">
+      <p>YLP progress and leadership readiness are developmental indicators. They do not independently constitute a promotion, succession, performance, or potential decision.</p>
+      <p>Privacy Notice: Files uploaded here are processed locally within this browser. The application does not send participant information to an external server. Data saved in this application may remain in browser storage until it is cleared.</p>
+    </div>
+  </footer>
+
+  <dialog id="profile-dialog" class="profile-dialog" aria-labelledby="profile-name"></dialog>
+  <dialog id="confirm-dialog" class="confirm" aria-labelledby="confirm-title"></dialog>
+  <div id="profile-print" aria-hidden="true"></div>
+
+  <script src="data/sample-data.js"></script>
+  <script src="assets/js/core/namespace.js"></script>
+  <script src="assets/js/core/dom.js"></script>
+  <script src="assets/js/core/sanitize.js"></script>
+  <script src="assets/js/core/dates.js"></script>
+  <script src="assets/js/core/model.js"></script>
+  <script src="assets/js/core/framework.js"></script>
+  <script src="assets/js/core/kra.js"></script>
+  <script src="assets/js/core/storage.js"></script>
+  <script src="assets/js/core/compat.js"></script>
+  <script src="assets/js/core/libs.js"></script>
+  <script src="assets/js/engine/util.js"></script>
+  <script src="assets/js/engine/competency.js"></script>
+  <script src="assets/js/engine/projects.js"></script>
+  <script src="assets/js/engine/kracompare.js"></script>
+  <script src="assets/js/engine/roles.js"></script>
+  <script src="assets/js/engine/progress.js"></script>
+  <script src="assets/js/engine/availability.js"></script>
+  <script src="assets/js/engine/validate.js"></script>
+  <script src="assets/js/engine/derive.js"></script>
+  <script src="assets/js/io/csv.js"></script>
+  <script src="assets/js/io/schema.js"></script>
+  <script src="assets/js/io/importers.js"></script>
+  <script src="assets/js/io/export.js"></script>
+  <script src="assets/js/ui/charts.js"></script>
+  <script src="assets/js/ui/shell.js"></script>
+  <script src="assets/js/ui/home.js"></script>
+  <script src="assets/js/ui/journey.js"></script>
+  <script src="assets/js/ui/model702010.js"></script>
+  <script src="assets/js/ui/mandala.js"></script>
+  <script src="assets/js/ui/gallery.js"></script>
+  <script src="assets/js/ui/profile.js"></script>
+  <script src="assets/js/ui/projects.js"></script>
+  <script src="assets/js/ui/dashboard.js"></script>
+  <script src="assets/js/ui/admin.js"></script>
+  <script src="assets/js/ui/governance.js"></script>
+  <script src="assets/js/ui/present.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
